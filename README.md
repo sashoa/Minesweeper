@@ -37,7 +37,7 @@ The good old Minesweeper game implemented with Front-end web technologies
 - Players can play as guest or as registered users.
 - Scoreboard for registered players. (for predefined game difficulty only)
 
-###Technologies, tools and services using in development:
+### Technologies, tools and services using in development:
   - HTML, CSS, JS (ES6)
   - Git VCS
   - Bootstrap 4
