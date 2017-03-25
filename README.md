@@ -20,12 +20,12 @@ The good old Minesweeper game implemented with Front-end web technologies
   - Medium: 16 x 16
   - Expert: 30 x 16
   - Custom Difficulty
-  - Maximum rows: 24
-  - Minimum rows: 9
-  - Maximum columns: 30
-  - Minimum columns: 9
-  - Maximum bombs: Round ((rows * columns) * 0.6)
-  - Minimum bombs: 10
+    - Maximum rows: 24
+    - Minimum rows: 9
+    - Maximum columns: 30
+    - Minimum columns: 9
+    - Maximum bombs: Round ((rows * columns) * 0.6)
+    - Minimum bombs: 10
 - Replayable games Feature
 	- When creating a game user can choose a specific bomb arrangement which can be played multiple times based upon some key (string)
 
