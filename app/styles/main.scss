@@ -89,3 +89,23 @@ body {
     border-bottom: 0;
   }
 }
+
+.clear-left {
+  clear: left;
+}
+
+#gridWrapper {
+  text-align: center;
+}
+#testMinesweeper {
+  overflow: auto;
+  display: inline-block;
+}
+.field {
+  float: left;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: #999;
+  border: 1px solid #000;
+}
