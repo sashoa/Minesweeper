@@ -9,6 +9,7 @@ const browserify = require('browserify');
 const babelify = require('babelify');
 const buffer = require('vinyl-buffer');
 const source = require('vinyl-source-stream');
+const fs = require('fs');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -143,7 +144,14 @@ gulp.task('serve:dist', ['default'], () => {
   });
 });
 
-gulp.task('serve:test', ['scripts'], () => {
+gulp.task('testbundle', () => {
+  var browserify = require('browserify');
+   browserify('test/spec/tests.js')
+  .transform('babelify')
+  .bundle()
+  .pipe(fs.createWriteStream('test/spec/.tmp/testbundle.js'));
+})
+gulp.task('serve:test', ['scripts', 'testbundle'], () => {
   browserSync.init({
     notify: false,
     port: 9000,
@@ -157,9 +165,10 @@ gulp.task('serve:test', ['scripts'], () => {
     }
   });
 
-  gulp.watch('app/scripts/**/*.js', ['scripts']);
-  gulp.watch(['test/spec/**/*.js', 'test/index.html']).on('change', reload);
-  gulp.watch('test/spec/**/*.js', ['lint:test']);
+  gulp.watch('test/spec/**/*.js', ['testbundle']);
+  gulp.watch('app/scripts/**/*.js', ['scripts', 'testbundle']);
+  // gulp.watch('test/spec/**/*.js', ['lint:test']);
+  // gulp.watch(['test/spec/testbundle.js', 'test/index.html']).on('change', reload);
 });
 
 // inject bower components
