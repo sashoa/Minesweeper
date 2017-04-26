@@ -144,7 +144,11 @@ describe('Board', function () {
     // console.log(board.grid);
 
     let areEqual = true;
+    if (boardOne.grid.length !== boardTwo.grid.length)
+      areEqual = false;
     for (var i = 0; i < boardOne.grid.length; i++) {
+      if (boardOne.grid[i].length !== boardTwo.grid[i].length)
+        areEqual = false;
       for (var j = 0; j < boardOne.grid[i].length; j++) {
         var boardOneElement = boardOne.grid[i][j];
         var boardTwoElement = boardTwo.grid[i][j];
