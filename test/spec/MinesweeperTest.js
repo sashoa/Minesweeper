@@ -38,7 +38,6 @@ describe('Minesweeper', function() {
     let minesweeper = new Minesweeper(options)
     expect(minesweeper).to.have.property('openField');
 
-    console.log(minesweeper.board.grid);
     let operationResult = minesweeper.openField(0,0);
     expect(minesweeper.board.grid[0][0].isOpened).to.be.true;
     expect(operationResult).to.be.null;
@@ -48,5 +47,71 @@ describe('Minesweeper', function() {
     expect(operationResult).to.equal('bomb');
     // operationResult = minesweeper.openField(0,2);
     // expect(operationResult).to.equal(3);
+  });
+  it('Can mark a board field', function () {
+    let options = {
+      difficulty: 'medium',
+      seedKey: 'sashe'
+    };
+    let minesweeper = new Minesweeper(options)
+    expect(minesweeper).to.have.property('toggleMarkField');
+
+    expect(minesweeper.board.grid[0][5].isMarked).to.be.false;
+    let operationResult = minesweeper.toggleMarkField(0,5);
+    expect(minesweeper.board.grid[0][5].isMarked).to.be.true;
+    expect(operationResult).to.be.true;
+    operationResult = minesweeper.openField(0,4);
+    operationResult = minesweeper.toggleMarkField(0,4);
+    expect(operationResult).to.be.null;
+    // operationResult = minesweeper.openField(0,2);
+    // expect(operationResult).to.equal(3);
+  });
+  it('Can unmark a board field', function () {
+    let options = {
+      difficulty: 'medium',
+      seedKey: 'sashe'
+    };
+    let minesweeper = new Minesweeper(options)
+    expect(minesweeper).to.have.property('toggleMarkField');
+
+    expect(minesweeper.board.grid[0][5].isMarked).to.be.false;
+    let operationResult = minesweeper.toggleMarkField(0,5);
+    expect(minesweeper.board.grid[0][5].isMarked).to.be.true;
+    expect(operationResult).to.be.true;
+    operationResult = minesweeper.toggleMarkField(0,5);
+    expect(minesweeper.board.grid[0][5].isMarked).to.be.false;
+    expect(operationResult).to.be.false;
+    operationResult = minesweeper.openField(0,4);
+    operationResult = minesweeper.toggleMarkField(0,4);
+    expect(operationResult).to.be.null;
+    // operationResult = minesweeper.openField(0,2);
+    // expect(operationResult).to.equal(3);
+  });
+  it('Can provide hints (revealing a non-mine field)', function () {
+    let options = {
+      difficulty: 'medium',
+      seedKey: 'sashe'
+    };
+    let minesweeper = new Minesweeper(options);
+    expect(minesweeper).to.have.property('getHint');
+    let hint = minesweeper.getHint(); 
+    let field = minesweeper.board.grid[hint.x][hint.y];
+    expect(field.value).to.not.equal('bomb');
+  });
+  it('Can not provide more than 3 hints', function () {
+    let options = {
+      difficulty: 'medium',
+      seedKey: 'sashe'
+    };
+    let minesweeper = new Minesweeper(options);
+    expect(minesweeper).to.have.property('getHint');
+    let hint, field;
+    for (var i = 0; i < 3; i++) {
+      hint = minesweeper.getHint(); 
+      field = minesweeper.board.grid[hint.x][hint.y];
+      expect(field.value).to.not.equal('bomb');
+    }
+    hint = minesweeper.getHint(); 
+    expect(hint).to.be.null;
   });
 });

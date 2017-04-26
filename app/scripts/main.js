@@ -1,5 +1,6 @@
 import Field from './Field.js';
 import Board from './Board.js';
+import Minesweeper from './Minesweeper.js';
 
 let testMinesweeper = document.getElementById('testMinesweeper');
 let board = new Board({ numberOfRows: 15,
@@ -38,5 +39,10 @@ function createDomField(value) {
   return field;
 }
 
+let minesweeper = new Minesweeper({difficulty: 'medium',
+                                   seedKey: 'sashe'});
+minesweeper.getHint();
+minesweeper.getHint();
+minesweeper.getHint();
 let sashe = createDomField('bomb');
 console.log(sashe);
