@@ -148,7 +148,8 @@ describe('Board', function () {
       for (var j = 0; j < boardOne.grid[i].length; j++) {
         var boardOneElement = boardOne.grid[i][j];
         var boardTwoElement = boardTwo.grid[i][j];
-        if (boardOneElement != boardTwoElement)
+        console.log(`Board One Element: ${boardOneElement.value} -- Board Two Element: ${boardTwoElement.value}`)
+        if (boardOneElement.value != boardTwoElement.value)
           areEqual = false;
       }
     }

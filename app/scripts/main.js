@@ -5,6 +5,7 @@ let testMinesweeper = document.getElementById('testMinesweeper');
 let board = new Board({ numberOfRows: 15,
                         numberOfColumns: 20,
                         numberOfBombs: 50,
+                        seedKey: 'sashe',
                         difficulty: 'custom'});
 
 let domFields = document.createDocumentFragment();
@@ -16,8 +17,8 @@ for (var i = 0; i < board.grid.length; i++) {
   var row = board.grid[i];
   for (var j = 0; j < row.length; j++) {
     var field = row[j];
-    console.log('FIELD VALUE');
-    console.log(field.value);
+    // console.log('FIELD VALUE');
+    // console.log(field.value);
     let domField = createDomField(field.value);
     if (j == 0) domField.classList.add('clear-left');
     domFields.appendChild(domField)

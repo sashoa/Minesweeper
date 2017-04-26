@@ -1,4 +1,5 @@
 import Field from './Field.js';
+let gen = require('random-seed');
 export default class Board {
   constructor(options) {
     options = configure(options);
@@ -6,6 +7,7 @@ export default class Board {
 
   function configure(options) {
     let configuredOptions = {};
+    configuredOptions.seedKey = options.hasOwnProperty('seedKey') ? options.seedKey : null;
     switch (options.difficulty) {
       case 'custom':
         if (options.hasOwnProperty('numberOfRows')
@@ -106,12 +108,13 @@ export default class Board {
   }
 
   function addBombs(allFields, options) {
+    let rand = options.seedKey ? gen.create(options.seedKey) : gen.create();
     let numberOfAllFields = options.numberOfRows * options.numberOfColumns
     let arr = [];
     for (let i = 0; i < numberOfAllFields; i++) {
       arr[i] = i;
     }
-    arr.sort(() => Math.random() - 0.5);
+    arr.sort(() => rand.floatBetween(-0.5, 0.5));
 
     let bombFields = arr.slice(0, options.numberOfBombs);
     console.log('BOMB FIELDS: ' + bombFields);
