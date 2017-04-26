@@ -136,4 +136,22 @@ describe('Board', function () {
     console.log(`number of bombs: ${numberOfBombs}, maximum bombs: ${maximumBombs}`);
     expect(numberOfBombs).to.be.below(maximumBombs + 1);
   });
+  it('It Can generate a specific grid multiple times based on a seed key', function () {
+    options.difficulty = 'medium';
+    options.seedKey = 'sashe';
+    let boardOne = new Board(options);
+    let boardTwo = new Board(options);
+    // console.log(board.grid);
+
+    let areEqual = true;
+    for (var i = 0; i < boardOne.grid.length; i++) {
+      for (var j = 0; j < boardOne.grid[i].length; j++) {
+        var boardOneElement = boardOne.grid[i][j];
+        var boardTwoElement = boardTwo.grid[i][j];
+        if (boardOneElement != boardTwoElement)
+          areEqual = false;
+      }
+    }
+    expect(areEqual).to.be.true
+  });
 });
