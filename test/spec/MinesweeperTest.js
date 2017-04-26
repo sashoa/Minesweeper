@@ -9,9 +9,9 @@ describe('Minesweeper', function() {
     };
     let minesweeper = new Minesweeper(options)
     minesweeper.should.have.property('board');
+
     let minesweeperGrid = minesweeper.board.grid;
     let boardGrid = new Board(options).grid;
-
     let areEqual = true;
 
     if (minesweeperGrid.length !== boardGrid.length)
@@ -29,5 +29,24 @@ describe('Minesweeper', function() {
     }
     expect(areEqual).to.be.true;
 
+  });
+  it('Can open a board field', function () {
+    let options = {
+      difficulty: 'medium',
+      seedKey: 'sashe'
+    };
+    let minesweeper = new Minesweeper(options)
+    expect(minesweeper).to.have.property('openField');
+
+    console.log(minesweeper.board.grid);
+    let operationResult = minesweeper.openField(0,0);
+    expect(minesweeper.board.grid[0][0].isOpened).to.be.true;
+    expect(operationResult).to.be.null;
+    operationResult = minesweeper.openField(0,4);
+    expect(operationResult).to.equal(2);
+    operationResult = minesweeper.openField(0,5);
+    expect(operationResult).to.equal('bomb');
+    // operationResult = minesweeper.openField(0,2);
+    // expect(operationResult).to.equal(3);
   });
 });

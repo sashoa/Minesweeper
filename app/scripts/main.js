@@ -6,7 +6,7 @@ let board = new Board({ numberOfRows: 15,
                         numberOfColumns: 20,
                         numberOfBombs: 50,
                         seedKey: 'sashe',
-                        difficulty: 'custom'});
+                        difficulty: 'medium'});
 
 let domFields = document.createDocumentFragment();
 
