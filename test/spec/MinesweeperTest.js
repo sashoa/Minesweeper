@@ -98,7 +98,7 @@ describe('Minesweeper', function() {
     let field = minesweeper.board.grid[hint.x][hint.y];
     expect(field.value).to.not.equal('bomb');
   });
-  it('Can not provide more than 3 hints', function () {
+  it('Would not provide more than 3 hints', function () {
     let options = {
       difficulty: 'medium',
       seedKey: 'sashe'
