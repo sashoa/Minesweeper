@@ -36,6 +36,7 @@ The good old Minesweeper game implemented with Front-end web technologies
   - 3 Lives available
 - Players can play as guest or as registered users.
 - Scoreboard for registered players. (for predefined game difficulty only)
+  - Scores are sorted by Difficulty then by time.
 
 ### Technologies, tools and services using in development:
   - HTML, CSS, JS (ES6)
@@ -44,5 +45,5 @@ The good old Minesweeper game implemented with Front-end web technologies
   - Browserify
   - Gulp
   - Bower
-  - Firebase
+  - Firebase (TODO)
   - Mocha + Chai (BDD attempt)
