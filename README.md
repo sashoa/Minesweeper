@@ -35,7 +35,7 @@ The good old Minesweeper game implemented with Front-end web technologies
 - Lives Feature.
   - 3 Lives available
 - Players can play as guest or as registered users.
-- Scoreboard for registered players. (for predefined game difficulty only)
+- Scoreboard
   - Scores are sorted by Difficulty then by time.
 
 ### Technologies, tools and services using in development:
