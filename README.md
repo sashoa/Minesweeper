@@ -1,5 +1,33 @@
 # Minesweeper
-The good old Minesweeper game implemented with Front-end web technologies
+The good old Minesweeper game implemented with Front-end web technologies.
+
+Try it: <a href="https://sashoa.github.io/Minesweeper" target="_blank">sashoa.github.io/Minesweeper</a>
+
+
+### Install dependencies:
+```
+npm install
+```
+```
+bower install
+```
+### Tasks:
+
+Start development server:
+```
+gulp serve
+```
+
+Run tests:
+```
+gulp serve:tests
+```
+
+Build for Production:
+```
+gulp
+```
+
 
 ## Specification:
 
