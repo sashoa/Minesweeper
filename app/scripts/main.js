@@ -43,6 +43,7 @@ scoreBoardNavBtn.addEventListener('click', function(event) {
 let playButton = document.getElementById('play');
 playButton.addEventListener('click', () => {
   createGame();
+  gameNavBtn.click();
 })
 
 function createGame() {
