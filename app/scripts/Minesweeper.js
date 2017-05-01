@@ -6,6 +6,7 @@ export default class Minesweeper {
     this.isGameOver = false;
     this.gameStatus = 'playing';
     this.markedFields = 0;
+    this.openedFields = 0;
     this.numberOfMines = this.getNumberOfMines()
     this.availableHints = 3;
     this.availableLives = 1;
@@ -47,6 +48,7 @@ export default class Minesweeper {
         }
       }
       this.checkVictory();
+      this.openedFields++;
       return field.value;
     };
     toggleMarkField(x, y) {
@@ -65,17 +67,30 @@ export default class Minesweeper {
     };
     getHint() {
       if (this.availableHints === 0) return null
-      this.availableHints--;
       let nonBombFields = [];
       let board = this.board.grid;
-      for (let i = 0; i < board.length; i++) {
-        let row = board[i];
-        for (let j = 0; j < row.length; j++) {
-          let field = row[j];
-          if (field.isOpened)
-            this.getNeighbourNonBombFields({x:i, y:j}, nonBombFields);
-          // if ((field.value != 'bomb') && (!field.isMarked && !field.isOpened))
-          // nonBombFields.push({ x: i, y: j });
+      // If there are some opened fields on the board
+      if (this.openedFields > 0) {
+        this.availableHints--;
+        for (let i = 0; i < board.length; i++) {
+          let row = board[i];
+          for (let j = 0; j < row.length; j++) {
+            let field = row[j];
+            if (field.isOpened)
+              this.getNeighbourNonBombFields({x:i, y:j}, nonBombFields);
+          }
+        }
+      }
+      // If none of the fields is opened
+      else {
+        this.availableHints--;
+        for (let i = 0; i < board.length; i++) {
+          let row = board[i];
+          for (let j = 0; j < row.length; j++) {
+            let field = row[j];
+            if (field.value != 'bomb')
+              nonBombFields.push({x: i, y: j});
+          }
         }
       }
       return nonBombFields[Math.floor(Math.random() * nonBombFields.length)];
